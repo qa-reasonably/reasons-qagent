@@ -30,4 +30,3 @@ Same agent architecture origin, diverged significantly. reasonable-ux has nav:La
 ## Rules
 - Minimum viable diff. Make the stated fix and nothing else.
 - This is interview-ready code — commit messages should be honest and specific.
-- Never delete without asking. Plan before building.
