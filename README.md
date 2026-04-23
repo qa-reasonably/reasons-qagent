@@ -23,7 +23,7 @@ UX runs generate a PDF report via `generate_report.py` — clean enough to hand 
 ## Quick start
 
 ```bash
-git clone https://github.com/qa-reasonably/reasons-qagent.git
+git clone https://github.com/ReasonEquals/reasons-qagent.git
 cd reasons-qagent
 python -m venv venv && source venv/bin/activate
 pip install anthropic playwright python-dotenv reportlab
