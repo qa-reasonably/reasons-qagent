@@ -2,7 +2,7 @@
 
 Give it a URL. It figures out what to test, runs the tests, and tells you what broke.
 
-I built this the week I started at [Juno.tax](https://juno.tax). When I asked the CTO what I should learn, he suggested I get up to speed on agentic testing — so I built a tool instead of reading about one. It's been the primary way I've been exploring what LLM-driven browser agents can actually do in practice.
+I built this to explore what LLM-driven browser agents can actually do in practice. The fastest way to learn a new space is to ship a tool in it.
 
 **84% token reduction** via image stripping from conversation history — full details in Engineering Decisions below.
 
