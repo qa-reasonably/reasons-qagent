@@ -1,8 +1,10 @@
 # reasons-qagent
 
+> **Archived 2026-04-23** — this project is complete and no longer actively maintained. Code is preserved as a portfolio artifact. The patterns explored here (screenshot-driven browser agents, image stripping for token reduction, persona-based UX evaluation) have carried forward into follow-on work.
+
 Give it a URL. It figures out what to test, runs the tests, and tells you what broke.
 
-I built this the week I started at [Juno.tax](https://juno.tax). When I asked the CTO what I should learn, he suggested I get up to speed on agentic testing — so I built a tool instead of reading about one. It's been the primary way I've been exploring what LLM-driven browser agents can actually do in practice.
+I built this to explore what LLM-driven browser agents can actually do in practice. The fastest way to learn a new space is to ship a tool in it.
 
 **84% token reduction** via image stripping from conversation history — full details in Engineering Decisions below.
 
@@ -23,7 +25,7 @@ UX runs generate a PDF report via `generate_report.py` — clean enough to hand 
 ## Quick start
 
 ```bash
-git clone https://github.com/qa-reasonably/reasons-qagent.git
+git clone https://github.com/ReasonEquals/reasons-qagent.git
 cd reasons-qagent
 python -m venv venv && source venv/bin/activate
 pip install anthropic playwright python-dotenv reportlab
