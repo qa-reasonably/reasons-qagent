@@ -1,5 +1,7 @@
 # reasons-qagent
 
+> **Archived 2026-04-23** — this project is complete and no longer actively maintained. Code is preserved as a portfolio artifact. The patterns explored here (screenshot-driven browser agents, image stripping for token reduction, persona-based UX evaluation) have carried forward into follow-on work.
+
 Give it a URL. It figures out what to test, runs the tests, and tells you what broke.
 
 I built this to explore what LLM-driven browser agents can actually do in practice. The fastest way to learn a new space is to ship a tool in it.
