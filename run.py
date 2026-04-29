@@ -1,8 +1,8 @@
-import asyncio
 import argparse
+import asyncio
+import os
 import subprocess
 import sys
-import os
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "tests"))
 
@@ -19,8 +19,8 @@ def parse_args():
     return parser.parse_args()
 
 async def run_with_plan(url, steps, token_budget, email, password, mode):
-    from planner import plan
     from agent_test import run
+    from planner import plan
 
     test_plan = await plan(url)
 
@@ -39,7 +39,7 @@ async def run_without_plan(url, goal, steps, token_budget, email, password, mode
     return total_tokens
 
 def build_index():
-    subprocess.run(["python", "build_index.py"])
+    subprocess.run([sys.executable, "build_index.py"])
     print("📊 Dashboard index updated.")
 
 if __name__ == "__main__":
@@ -48,7 +48,7 @@ if __name__ == "__main__":
     url = args.url or "https://the-internet.herokuapp.com/login"
     goal = args.goal or "Test the login form with valid and invalid credentials."
 
-    print(f"\n🚀 Starting test run")
+    print("\n🚀 Starting test run")
     print(f"   URL:   {url}")
     print(f"   Steps: {args.steps}")
     print(f"   Mode:  {args.mode.upper()}")
@@ -57,7 +57,7 @@ if __name__ == "__main__":
     if args.email:
         print(f"   Email: {args.email}")
     if args.plan:
-        print(f"   Plan:  Planner → Agent\n")
+        print("   Plan:  Planner → Agent\n")
     else:
         print(f"   Goal:  {goal}\n")
 
@@ -69,7 +69,7 @@ if __name__ == "__main__":
     build_index()
 
     if total_tokens:
-        print(f"\n📊 Total tokens used this run:")
+        print("\n📊 Total tokens used this run:")
         print(f"   Input:  {total_tokens['input']:,}")
         print(f"   Output: {total_tokens['output']:,}")
         print(f"   Total:  {total_tokens['total']:,}")

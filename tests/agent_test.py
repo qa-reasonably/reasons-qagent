@@ -1,11 +1,12 @@
 import asyncio
-import os
-from playwright.async_api import async_playwright
-from anthropic import Anthropic
-from dotenv import load_dotenv
 import base64
 import json
+import os
 from datetime import datetime
+
+from anthropic import Anthropic
+from dotenv import load_dotenv
+from playwright.async_api import async_playwright
 
 load_dotenv()
 client = Anthropic()
@@ -36,7 +37,7 @@ def _sanitize_selector(selector):
 def _build_prompt(goal, step, max_steps, email, password, mode, url=None):
     creds_block = ""
     if email or password:
-        creds_block = f"\nIf you encounter a login or signup form, use these credentials:\n"
+        creds_block = "\nIf you encounter a login or signup form, use these credentials:\n"
         if email:
             creds_block += f"  Email/Username: {email}\n"
         if password:
@@ -215,7 +216,7 @@ def _build_html_report(report, goal, run_id, run_label, mode, below_fold=None):
             pf = entry.get("pass_fail", "").upper()
             pf_color = "#2ecc71" if pf == "PASS" else "#e74c3c" if pf == "FAIL" else "#f39c12"
 
-            def score_cell(field):
+            def score_cell(field, entry=entry):
                 obj = entry.get(field)
                 if not obj:
                     return "—"

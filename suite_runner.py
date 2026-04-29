@@ -1,16 +1,16 @@
 import asyncio
-import os
 import json
-import sys
+import os
 import subprocess
+import sys
 from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "tests"))
 
 async def run_suite(url: str, max_steps: int = 8, token_budget: int = None, email: str = None, password: str = None, mode: str = "qa"):
-    from planner import plan
     from agent_test import run
+    from planner import plan
 
     suite_id = datetime.now().strftime("%Y%m%d_%H%M%S")
     suite_dir = Path(f"runs/suite_{suite_id}")
@@ -194,7 +194,7 @@ async def run_suite(url: str, max_steps: int = 8, token_budget: int = None, emai
     suite_report_path = suite_dir / "suite_report.html"
     with open(suite_report_path, "w", encoding="utf-8") as f:
         f.write(html)
-    subprocess.run(["python", "build_index.py"])
+    subprocess.run([sys.executable, "build_index.py"])
     print("📊 Dashboard index updated.")
 
     print(f"\n{'='*60}")

@@ -4,10 +4,11 @@ Agentic QA testing tool. Give it a URL, it figures out what to test, runs the te
 
 ## Architecture
 - **run.py** — CLI entry point. `--url` required, `--plan` for planner-driven test cases, `--mode qa|ux`.
-- **tests/agent_test.py** — the agent loop (NOT a test file despite the path). Screenshot → Claude → action → repeat.
+- **tests/agent_test.py** — the agent loop (NOT a test file despite the path). Screenshot → Claude → action → repeat. 541 lines.
 - **suite_runner.py** — planner → prioritized test cases → agent per case → suite_report.html.
-- **generate_report.py** — ReportLab PDF generation.
+- **generate_report.py** — ReportLab PDF generation for UX mode reports. 374 lines of layout code.
 - **tests/planner.py** — scrapes page, asks Claude to generate test cases.
+- **build_index.py** — aggregates `runs/` into `runs/index.json` and `runs/suite_index.json` for the dashboard.
 
 ## Key design decisions
 - `max_tokens=1024` in agent loop — don't raise without measuring.

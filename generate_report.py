@@ -1,6 +1,5 @@
 import argparse
 import json
-import os
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -9,7 +8,7 @@ from urllib.parse import urlparse
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER, TA_LEFT
 from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
+from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import mm
 from reportlab.platypus import (
     HRFlowable,
@@ -38,7 +37,6 @@ MARGIN = 18 * mm
 
 # ── Style helpers ─────────────────────────────────────────────────────────────
 def styles():
-    base = getSampleStyleSheet()
     def s(name, **kw):
         return ParagraphStyle(name, **kw)
 
@@ -115,7 +113,7 @@ def find_latest_ux_run(runs_dir="runs"):
             data = json.loads(rp.read_text(encoding="utf-8"))
             if data and "cta_clarity" in data[0]:
                 candidates.append((folder, data))
-        except Exception:
+        except Exception:  # noqa: S112 — skip unreadable/non-UX run folders
             continue
     if not candidates:
         sys.exit("No UX mode runs found in runs/")
@@ -137,8 +135,6 @@ def avg_scores(report):
 
 def derive_url(run_folder):
     # Try to find URL from run folder's report — fall back to folder name
-    rp = run_folder / "report.json"
-    data = json.loads(rp.read_text(encoding="utf-8"))
     # URL isn't stored in JSON currently; derive a presentable label from folder name
     parts = run_folder.name.split("_")
     # Folder format: YYYYMMDD_HHMMSS_word_word_...
@@ -221,7 +217,7 @@ def build_pdf(run_folder, report, url_hint, output_path):
             st["td_left"],
         )
 
-        def score_cell(dim):
+        def score_cell(dim, entry=entry):
             val = entry.get(dim)
             if not val:
                 return Paragraph("—", st["td"])
